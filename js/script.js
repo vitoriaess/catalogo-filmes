@@ -1,35 +1,47 @@
-let ator = new Ator(1, "JOHN WAYNE")
-console.log(ator);
+let inputBuscarFilme = document.querySelector("#input-buscar-filme");
+let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
+let listarFilmes = async(filmes) => {
+    let listaFilmes = document.querySelector("#lista-filmes");
+    listaFilmes.innerHTML = "";
+    console.log(listaFilmes);
+    if(filmes.length > 0){
+        filmes.forEach(async(filme)=> {
+            listaFilmes.appendChild(await filme.getCard());
+        });
+    }
+}
 
-let diretor = new Diretor (1, "Alfred Hitchcock");
-console.log(diretor);
+btnBuscarFilme.onclick = () => {
+    if(inputBuscarFilme.value.length > 0){
+        let filmes = new Array();
+        fetch("https://www.omdbapi.com/?apikey=74a491af&s="+inputBuscarFilme.value)
+        .then((resp)=> resp.json())
+        .then((resp)=> {
+            console.log(resp)
+            resp.Search.forEach((item) => {
+                console.log(item); 
+                let filme=new Filme(
+                item.imdbID,
+                item.Title,
+                item.Year,
+                null,
+                null,
+                item.Poster,
+                null,
+                null,
+                null,
+                null,
+                null
+            );
+            filmes.push(filme);
 
-let genero = ["Ação","Ficção científica"];
-let sinopse = "O jovem programador Thomas Anderson é atormentado por estranhos pesadelos em que está sempre conectado por cabos a um imenso sistema de computadores do futuro. À medida que o sonho se repete, ele começa a desconfiar da realidade. Thomas conhece os misteriosos Morpheus e Trinity e descobre que é vítima de um sistema inteligente e artificial chamado Matrix, que manipula a mente das pessoas e cria a ilusão de um mundo real enquanto usa os cérebros e corpos dos indivíduos para produzir energia.";
+        });
+        listarFilmes(filmes);
 
-let direcao = [
-    new Diretor (1,"Lana Wachowski"),
-    new Diretor (2,"Lilly Wachowski")
-];
+    })
 
-let elenco = [
-    new Ator (1,"Keanu reeves"),
-    new Ator (2,"Carrie-Anne Moss"),
-    new Ator (3,"Laurence Fishburne")
-];
+    }
+return false;
+}
 
-let filme = new Filmes(
-    1,
-    "Matrix",
-    1999,
-    genero,
-    136,
-    sinopse,
-    // link do poster/cartaz
-    direcao,
-    elenco,
-    14,
-    8,8
-);
 
-console.log(filme);
