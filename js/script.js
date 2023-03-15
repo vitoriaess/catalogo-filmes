@@ -1,5 +1,7 @@
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
+/*let btnDetalhes = document.querySelector("#btn-detalhes");*/
+
 let listarFilmes = async(filmes) => {
     let listaFilmes = document.querySelector("#lista-filmes");
     listaFilmes.innerHTML = "";
@@ -44,4 +46,16 @@ btnBuscarFilme.onclick = () => {
 return false;
 }
 
+/*let btnDetalhes.querySelectorAll(".btnDetalhes");
+btnDetalhes.forEach(item)=>{
+    item.addEventListenes("click",()={this.id})
+}/*
 
+/*
+btnDetalhes.onclick = ()=>
+{
+    btnDetalhes.setAtribute("id",this.id);
+    btnDetalhes.setAtribute("class","btnDetalhes");
+}
+*/
+/*element.addEventListener.document.querySelector.btnDetalhes*/

@@ -13,3 +13,12 @@
     flex-wrap: wrap;
     padding: 2rem;
 }
+
+.card{
+    width: 40vh;
+    margin: 3vh;
+}
+.card img{
+    object-fit: cover;
+    max-width: 45vh;
+}
