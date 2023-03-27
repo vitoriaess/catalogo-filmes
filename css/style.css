@@ -16,9 +16,20 @@
 
 .card{
     width: 40vh;
-    margin: 3vh;
+    margin-left: 7vh;
+    margin-bottom: 4vh;
 }
-.card img{
+
+
+.card img {
     object-fit: cover;
-    max-width: 45vh;
+    max-width: 40vh;
+    height: 22rem;
+}
+
+#mostrar-filmes{
+    display: none;
+    height: 200px;
+    width: 300px;
+    background-color: blue;
 }

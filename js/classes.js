@@ -28,6 +28,7 @@ class Filme
         this.elenco=elenco; // lista de atores do filme
         this.classificacao=classificacao; // classificação de faixa etária
         this.avaliacao=avaliacao; // rating
+        this.btnDetalhes = null
     }
 
     getCard = async () => {
@@ -60,11 +61,23 @@ class Filme
         cardBody.appendChild(hCardTitle);
         cardBody.appendChild(divDetalhes);
 
-        let bntDetalhes = document.createElement('button');
-        bntDetalhes.appendChild(document.createTextNode("Detalhes"));
-        bntDetalhes.setAttribute("id","bnt-detalhes");
-        cardBody.appendChild(bntDetalhes);
-        
+        this.setBtnDetalhes();
+        cardBody.appendChild(this.getBtnDetalhes());
+
         return card;
     }
+setBtnDetalhes = () =>{
+    this.btnDetalhes = document.createElement("button");
+    this.btnDetalhes.appendChild(document.createTextNode("Detalhes"));
+    this.btnDetalhes.setAttribute("id",this.id);
+    this.btnDetalhes.setAttribute("class","btnDetalhesFilme");
 }
+
+getBtnDetalhes = () =>{
+    return this.btnDetalhes;
+}
+}
+
+
+
+
