@@ -2,8 +2,6 @@ let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
 let btnDetalhes = document.getElementById("#btn-detalhes");
 
-
-
 btnBuscarFilme.onclick = () => {
     if(inputBuscarFilme.value.length > 0){
         let filmes = new Array();
@@ -27,12 +25,9 @@ btnBuscarFilme.onclick = () => {
                 null
             );
             filmes.push(filme);
-
         });
         listarFilmes(filmes);
-
     })
-
     }
 return false;
 }
@@ -41,7 +36,6 @@ let btnDetalhesFilme = async (id)=>{
     fetch("https://www.omdbapi.com/?apikey=74a491af&i="+id)
     .then((resp)=> resp.json())
     .then((resp)=> {
-        console.log(resp);
         let filme=new Filme(
             resp.imdbID,
             resp.Title,
@@ -55,7 +49,6 @@ let btnDetalhesFilme = async (id)=>{
             resp.Awards,
             resp.imdbRating
         )
-
         document.querySelector("#mostrar-filmes").appendChild(filme.getDetalhesFilme());
         document.querySelector("#lista-filmes".style.display-"none");
         document.querySelector("mostar-filmes").style.display="flex";
@@ -74,22 +67,9 @@ let listarFilmes = async (filmes) => {
             console.log(filme);
                 listaFilmes.appendChild(await filme.getCard());
                 filme.getBtnDetalhes().onclick=()=>{
+                    listaFilmes.style.display = 'none';
                     btnDetalhesFilme(filme.id);
                 }
         });
     }
 }
-
-/*let btnDetalhes.querySelectorAll(".btnDetalhes");
-btnDetalhes.forEach(item)=>{
-    item.addEventListenes("click",()={this.id})
-}/*
-
-/*
-btnDetalhes.onclick = ()=>
-{
-    btnDetalhes.setAtribute("id",this.id);
-    btnDetalhes.setAtribute("class","btnDetalhes");
-}
-*/
-/*element.addEventListener.document.querySelector.btnDetalhes*/
