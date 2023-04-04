@@ -1,6 +1,7 @@
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
-let btnDetalhes = document.getElementById("#btn-detalhes");
+let mostrarFilmes = document.querySelector("#mostrar-filme");
+let listaFilmes = document.querySelector("#lista-filmes");
 
 btnBuscarFilme.onclick = () => {
     if(inputBuscarFilme.value.length > 0){
@@ -18,7 +19,6 @@ btnBuscarFilme.onclick = () => {
                 null,
                 null,
                 item.Poster,
-                null,
                 null,
                 null,
                 null,
@@ -43,15 +43,22 @@ let btnDetalhesFilme = async (id)=>{
             resp.Genre.split(","),
             resp.Runtime,
             resp.Poster,
-            resp.plot,
+            resp.Plot,
             resp.Director,
             resp.Actors.split(","),
             resp.Awards,
             resp.imdbRating
         )
-        document.querySelector("#mostrar-filmes").appendChild(filme.getDetalhesFilme());
-        document.querySelector("#lista-filmes".style.display-"none");
-        document.querySelector("mostar-filmes").style.display="flex";
+        console.log(filme);
+        document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme());
+        document.querySelector("#mostrar-filme").style.display="flex";
+        document.querySelector("#lista-filmes").style.display="none";
+
+        document.querySelector("#btn-fechar").onclick =() =>{
+            document.querySelector("#lista-filmes").style.display="flex";
+            document.querySelector("#mostrar-filme").innerHTML="";
+            document.querySelector("#mostrar-filme").style.display="none";
+        }
     });
 }
 
@@ -59,8 +66,8 @@ let listarFilmes = async (filmes) => {
     let listaFilmes = await document.querySelector("#lista-filmes");
     listaFilmes.style.display="flex";
     listaFilmes.innerHTML = "";
-    document.querySelector("#mostrar-filmes").innerHTML="";
-    document.querySelector("#mostrar-filmes").style.display="none";
+    document.querySelector("#mostrar-filme").innerHTML="";
+    document.querySelector("#mostrar-filme").style.display="none";
     //console.log(listarFilmes);
     if(filmes.length > 0){
         filmes.forEach(async(filme) => {
@@ -72,4 +79,6 @@ let listarFilmes = async (filmes) => {
                 }
         });
     }
+
 }
+
